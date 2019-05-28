@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: samcntech-com-tls
+spec:
+  secretName: samcntech-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: samcntech.com
+  dnsNames:
+    - samcntech.com
+    - www.samcntech.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - samcntech.com
+          - www.samcntech.com
